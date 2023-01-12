@@ -10,18 +10,25 @@ public class ScoreSystem : MonoBehaviour
     public const string HighScoreKey = "HighScore";
     private float score;
 
+    public bool canScoring;
+
+    private void Start()
+    {
+        canScoring = true;
+    }
     void Update()
     {
-        score += Time.deltaTime * scoreMultiplier;
+        if (canScoring)
+            score += Time.deltaTime * scoreMultiplier;
         scoreText.text = Mathf.FloorToInt(score).ToString();
     }
     private void OnDestroy()
     {
-        int currentHighScore = PlayerPrefs.GetInt(HighScoreKey,0);
+        int currentHighScore = PlayerPrefs.GetInt(HighScoreKey, 0);
 
-        if(score > currentHighScore)
+        if (score > currentHighScore)
         {
-            PlayerPrefs.SetInt(HighScoreKey,Mathf.FloorToInt(score));
+            PlayerPrefs.SetInt(HighScoreKey, Mathf.FloorToInt(score));
         }
     }
 }
