@@ -26,7 +26,7 @@ public class Car : MonoBehaviour
     }
     void Update()
     {
-        rb.AddForce(Vector3.down * 5f, ForceMode.Acceleration);
+        rb.AddForce(Vector3.down * 8f, ForceMode.Acceleration);
         _speed += _speedGainPerSecond * Time.deltaTime;
 
         transform.Rotate(0f, steerValue * turnSpeed * Time.deltaTime, 0f);
@@ -45,6 +45,7 @@ public class Car : MonoBehaviour
     private void End()
     {
         camera.GetComponent<CinemachineVirtualCamera>().m_Follow = null;
+        gameObject.GetComponent<AudioSource>().enabled = false;
         Instantiate(dieEffect, new Vector3(transform.position.x, transform.position.y+1, transform.position.z), Quaternion.identity);
         Handheld.Vibrate();
         Invoke("panel", 2);
