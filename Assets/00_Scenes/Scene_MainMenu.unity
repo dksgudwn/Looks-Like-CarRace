@@ -561,7 +561,7 @@ GameObject:
   - component: {fileID: 1025623937}
   - component: {fileID: 1025623936}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: HighScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -753,7 +753,7 @@ GameObject:
   - component: {fileID: 1407855430}
   - component: {fileID: 1407855429}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: SimpleDriving
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

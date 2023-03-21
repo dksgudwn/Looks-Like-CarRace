@@ -16,7 +16,7 @@ public class Car : MonoBehaviour
     [SerializeField] GameObject dieCanvas;
     float timer = 0;
 
-    private int steerValue;
+    private float steerValue;
     Rigidbody rb;
 
     private void Start()
@@ -26,12 +26,14 @@ public class Car : MonoBehaviour
     }
     void Update()
     {
-        rb.AddForce(Vector3.down * 8f, ForceMode.Acceleration);
+        rb.AddForce(Vector3.down * 300f, ForceMode.Acceleration);
+        steerValue = Input.GetAxisRaw("Horizontal");
         _speed += _speedGainPerSecond * Time.deltaTime;
 
         transform.Rotate(0f, steerValue * turnSpeed * Time.deltaTime, 0f);
 
         transform.Translate(Vector3.forward * _speed * Time.deltaTime);
+        Debug.Log(steerValue);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -67,8 +69,8 @@ public class Car : MonoBehaviour
         //SceneManager.LoadScene(0);
     }
 
-    public void Steer(int value) //조종하다.
+/*    public void Steer(int value) //조종하다.
     {
         steerValue = value;
-    }
+    }*/
 }
