@@ -27,7 +27,6 @@ public class Car : MonoBehaviour
     void Update()
     {
         rb.AddForce(Vector3.down * 300f, ForceMode.Acceleration);
-        steerValue = Input.GetAxisRaw("Horizontal");
         _speed += _speedGainPerSecond * Time.deltaTime;
 
         transform.Rotate(0f, steerValue * turnSpeed * Time.deltaTime, 0f);
@@ -48,7 +47,7 @@ public class Car : MonoBehaviour
     {
         camera.GetComponent<CinemachineVirtualCamera>().m_Follow = null;
         gameObject.GetComponent<AudioSource>().enabled = false;
-        Instantiate(dieEffect, new Vector3(transform.position.x, transform.position.y+1, transform.position.z), Quaternion.identity);
+        Instantiate(dieEffect, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), Quaternion.identity);
         Handheld.Vibrate();
         Invoke("panel", 2);
     }
@@ -69,8 +68,8 @@ public class Car : MonoBehaviour
         //SceneManager.LoadScene(0);
     }
 
-/*    public void Steer(int value) //조종하다.
+    public void Steer(int value) //조종하다.
     {
         steerValue = value;
-    }*/
+    }
 }

@@ -9029,7 +9029,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2950654999389298946, guid: 1baa41f83743730478a7f3ee4dca9997, type: 3}
       propertyPath: _speed
-      value: 30
+      value: 7.07
       objectReference: {fileID: 0}
     - target: {fileID: 2950654999389298946, guid: 1baa41f83743730478a7f3ee4dca9997, type: 3}
       propertyPath: camera
@@ -9063,7 +9063,8 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2887193145506169861, guid: 1baa41f83743730478a7f3ee4dca9997, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1baa41f83743730478a7f3ee4dca9997, type: 3}
 --- !u!1001 &5089355894166239821
 PrefabInstance:
