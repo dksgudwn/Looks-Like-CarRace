@@ -46,17 +46,16 @@ public class Car : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger");
         if (other.CompareTag("Obstacle"))
         {
-            Debug.Log("Obstacle");
+            Debug.Log(other.name);
             End();
         }
     }
 
     private void End()
     {
-        GetComponent<Camera>().GetComponent<CinemachineVirtualCamera>().m_Follow = null;
+        _camera.GetComponent<CinemachineVirtualCamera>().m_Follow = null;
         gameObject.GetComponent<AudioSource>().enabled = false;
         Instantiate(dieEffect, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), Quaternion.identity);
         Handheld.Vibrate();
