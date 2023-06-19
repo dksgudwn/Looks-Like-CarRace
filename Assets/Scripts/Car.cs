@@ -6,15 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class Car : MonoBehaviour
 {
-    [SerializeField] private float _speed;
+    [SerializeField] private float _speed = 30;
     [SerializeField] private float _speedGainPerSecond = 0.2f;
     [SerializeField] private float turnSpeed = 200f;
 
-    [SerializeField] GameObject scoreMaster;
+
     [SerializeField] GameObject _camera;
     [SerializeField] GameObject dieEffect;
-    [SerializeField] GameObject StartBtn;
-    [SerializeField] GameObject ReStartBtn;
     float timer = 0;
 
     private float steerValue;
@@ -23,32 +21,31 @@ public class Car : MonoBehaviour
 
     private void Awake()
     {
-        ReStartBtn.SetActive(false);
         rb = GetComponent<Rigidbody>();
         isMove = false;
     }
     private void Start()
     {
-        _speed = 0f;
+        _speed = 30;
     }
     void Update()
     {
         if (isMove)
         {
-            rb.AddForce(Vector3.down * 10, ForceMode.Acceleration);
+            rb.AddForce(Vector3.down * 1000000, ForceMode.Acceleration);
             _speed += _speedGainPerSecond * Time.deltaTime;
         }
 
         transform.Rotate(0f, steerValue * turnSpeed * Time.deltaTime, 0f);
 
         transform.Translate(Vector3.forward * _speed * Time.deltaTime);
+        transform.Translate(Vector3.down * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Obstacle"))
         {
-            Debug.Log(other.name);
             End();
         }
     }
@@ -59,23 +56,18 @@ public class Car : MonoBehaviour
         gameObject.GetComponent<AudioSource>().enabled = false;
         Instantiate(dieEffect, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), Quaternion.identity);
         Handheld.Vibrate();
-        Invoke("GameOver", 2);
+        GameManager.Instance.canScoring = false;
+        Invoke(nameof(CallGameOver), 2);
     }
 
-    private void GameOver()
+    private void CallGameOver()
     {
-        scoreMaster.GetComponent<ScoreSystem>().canScoring = false;
-        ReStartBtn.SetActive(true);
+        GameManager.Instance.GameOver();
     }
 
     public void loadScene(int index)
     {
         SceneManager.LoadScene(index);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        //SceneManager.LoadScene(0);
     }
 
     public void Steer(int value) //�����ϴ�.
@@ -85,8 +77,9 @@ public class Car : MonoBehaviour
 
     public void StartBtnClick()
     {
-        StartBtn.SetActive(false);
-        _speed = 30f;
+        Debug.Log("Start");
+        //StartBtn.SetActive(false);
         isMove = true;
     }
+    
 }
