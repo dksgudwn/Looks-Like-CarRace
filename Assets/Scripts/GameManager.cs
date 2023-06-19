@@ -35,8 +35,8 @@ public class GameManager : MonoBehaviour
 
         cars.AddRange(Resources.LoadAll<Sprite>("Image"));
         RealCars.AddRange(Resources.LoadAll<GameObject>("RealCar"));
-        MonoBehaviour.DontDestroyOnLoad(this);
-        SpawnPosition = GameObject.Find("SpawnPosition").transform;
+        //MonoBehaviour.DontDestroyOnLoad(this);
+        SpawnPosition = GameObject.Find("SpawnPosition ").transform;
         SelectPanel = GameObject.Find("SelectPanel");
         RestartPanel = GameObject.Find("RestartPanel");
         carImage = GameObject.Find("Image");
@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
     }
     public void ReStartBtnClick()
     {
-        SceneManager.LoadScene("GameOver");
+        SceneManager.LoadScene("Scene_Game 1");
     }
     public void GoMenu()
     {
